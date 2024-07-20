@@ -10,23 +10,21 @@ import SwiftUI
 
 
 struct ContentView: View {
-    
-    @State private var boards: [BoardListItem]?
-    
-    @State private var networkManager = NetworkManager()
+
     @State private var viewModel = ViewModel()
     
     var body: some View {
         NavigationStack {
-            if let boards = boards {
+            if !viewModel.boards.isEmpty {
                 List {
-                    ForEach(boards, id: \.name) { board in
+                    ForEach(viewModel.boards, id: \.name) { board in
                         NavigationLink {
                             BoardView(id: board.id)
                         } label: {
                             HStack {
                                 Text("/\(board.id)/")
                                     .fontWeight(.semibold)
+                                    .foregroundStyle(.orange)
                                 Text(board.name)
                                 
                                 Spacer()
@@ -39,7 +37,6 @@ struct ContentView: View {
                     }
                     .navigationTitle("Boards")
                 }
-                
             } else {
                 ProgressView()
             }
@@ -47,25 +44,10 @@ struct ContentView: View {
         
         .onAppear {
             Task {
-                do {
-                    boards = try await networkManager.downloadData(from: "https://2ch.hk/api/mobile/v2/boards")
-                } catch NetworkError.invalidData {
-                    print("Invalid Data")
-                } catch NetworkError.invalidResponse {
-                    print("Invalid Response")
-                } catch NetworkError.invalidUrl {
-                    print("Invalid URL")
-                } catch NetworkError.unableToDecode {
-                    print("Unable to decode data")
-                } catch {
-                    print("General Error")
-                }
-                
+                await viewModel.getData()
             }
         }
     }
-    
-
 }
 
 #Preview {

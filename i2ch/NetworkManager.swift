@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Observation
 
 enum NetworkError: Error {
     case invalidUrl, invalidResponse, invalidData, unableToDecode
@@ -13,8 +14,6 @@ enum NetworkError: Error {
 
 @Observable
 class NetworkManager {
-    
-    
     
     func downloadData<T: Codable>(from urlString: String) async throws -> T {
         let url = URL(string: urlString)!
@@ -37,7 +36,5 @@ class NetworkManager {
             throw NetworkError.invalidData
         }
     }
-    
-    
     
 }
