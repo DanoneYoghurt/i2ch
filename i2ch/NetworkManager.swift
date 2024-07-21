@@ -37,4 +37,26 @@ class NetworkManager {
         }
     }
     
+//    func downloadDataTest(from urlString: String) async throws -> BoardItem {
+//        let url = URL(string: urlString)!
+//        var request = URLRequest(url: url)
+//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.httpMethod = "GET"
+//        
+//        let (data, response) = try await URLSession.shared.data(from: url)
+//        
+//        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+//            throw NetworkError.invalidResponse }
+//        
+//        do {
+//            guard let result = try JSONDecoder().decode(BoardItem?.self, from: data) else {
+//                throw NetworkError.unableToDecode
+//            }
+//            
+//            return result
+//        } catch {
+//            throw NetworkError.invalidData
+//        }
+//    }
+    
 }
