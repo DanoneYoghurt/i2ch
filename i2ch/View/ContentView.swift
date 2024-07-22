@@ -23,9 +23,17 @@ struct ContentView: View {
                         } label: {
                             HStack {
                                 Text("/\(board.id)/")
+                                    .font(.system(size: 15))
+                                    .frame(width: 80)
                                     .fontWeight(.semibold)
                                     .foregroundStyle(.orange)
-                                Text(board.name)
+                                VStack(alignment: .leading) {
+                                    Text(board.name)
+                                        
+                                    Text(board.category)
+                                        .font(.system(size: 15))
+                                        .foregroundStyle(.secondary)
+                                }
                                 
                                 Spacer()
                                 
