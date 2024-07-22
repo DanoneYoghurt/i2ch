@@ -18,22 +18,33 @@ struct BoardView: View {
             if let boardItem = viewModel.boardItem {
                 List {
                     ForEach(boardItem.threads ?? [], id: \.date) { thread in
-                        ScrollView(.horizontal) {
-                        ForEach(thread.files ?? [], id: \.name) { file in
-                                AsyncImage(url: URL(string: "https://2ch.hk\(file.path ?? "")")!) { image in
-                                    image.image?
-                                        .resizable()
-                                        .frame(width: 200, height: 200)
+                        NavigationLink {
+                            ThreadView()
+                        } label: {
+                            HStack {
+                                ScrollView(.horizontal) {
+                                    HStack {
+                                        ForEach(thread.files ?? [], id: \.name) { file in
+                                            AsyncImage(url: URL(string: "https://2ch.hk\(file.path ?? "")")!) { image in
+                                                image
+                                                    .image?
+                                                    .resizable()
+                                                    .scaledToFill()
+                                                    .frame(width: 100, height: 100)
+                                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                            }
+                                        }
+                                    }
                                 }
+                                .frame(width: 105, height: 105)
+                                Text(thread.subject ?? "Loading")
+                                
                             }
-                        }
-                        VStack {
-                            Text(thread.subject ?? "")
-//                            Text(thread.comment ?? "")
-                            
                         }
                     }
                 }
+            } else {
+                ProgressView()
             }
         }
         .onAppear {
@@ -41,10 +52,13 @@ struct BoardView: View {
                 await viewModel.getData(board: id)
             }
         }
+        .navigationTitle("/\(id)/ \(viewModel.boardItem?.board?.name ?? "Loading")")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(.orange)
         
     }
 }
 
 #Preview {
-    BoardView(id: "b")
+    BoardView(id: "au")
 }
