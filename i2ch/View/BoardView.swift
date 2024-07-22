@@ -25,7 +25,7 @@ struct BoardView: View {
                                 ScrollView(.horizontal) {
                                     HStack {
                                         ForEach(thread.files ?? [], id: \.name) { file in
-                                            AsyncImage(url: URL(string: "https://2ch.hk\(file.path ?? "")")!) { image in
+                                            AsyncImage(url: URL(string: "https://2ch.hk\(file.thumbnail ?? "")")!) { image in
                                                 image
                                                     .image?
                                                     .resizable()
@@ -37,8 +37,19 @@ struct BoardView: View {
                                     }
                                 }
                                 .frame(width: 105, height: 105)
-                                Text(thread.subject ?? "Loading")
-                                
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                        Text(String(thread.num ?? 0))
+                                            .foregroundStyle(.orange)
+                                        Text(thread.name ?? "Loading")
+                                        Text(thread.email ?? "Loading")
+                                    }
+                                    .font(.system(size: 15))
+                                    Spacer()
+                                    Text(thread.subject ?? "Loading")
+                                    Spacer()
+                                }
+                                .padding(.vertical, 10)
                             }
                         }
                     }
@@ -52,9 +63,9 @@ struct BoardView: View {
                 await viewModel.getData(board: id)
             }
         }
-        .navigationTitle("/\(id)/ \(viewModel.boardItem?.board?.name ?? "Loading")")
+        .navigationTitle(viewModel.boardItem?.board?.name ?? "Loading")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbarBackground(.orange)
+        
         
     }
 }

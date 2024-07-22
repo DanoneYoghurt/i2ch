@@ -10,14 +10,14 @@ import SwiftUI
 
 
 struct ContentView: View {
-
+    
     @State private var viewModel = ViewModel()
     
     var body: some View {
         NavigationStack {
             if !viewModel.boards.isEmpty {
                 List {
-                    ForEach(viewModel.boards, id: \.name) { board in
+                    ForEach(viewModel.boards, id: \.id) { board in
                         NavigationLink {
                             BoardView(id: board.id)
                         } label: {
@@ -37,9 +37,11 @@ struct ContentView: View {
                     }
                     .navigationTitle("Boards")
                 }
+                
             } else {
                 ProgressView()
             }
+            
         }
         
         .onAppear {
