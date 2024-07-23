@@ -8,11 +8,35 @@
 import SwiftUI
 
 struct ThreadView: View {
+    
+    @State private var viewModel = ViewModel()
+    
+    var board: String
+    var num: String
+    
     var body: some View {
-        Text("Hello, World!")
+        
+             List {
+                ForEach(viewModel.threadItem?.threads ?? [], id: \.posts) { posts in
+                    
+                        ForEach(posts.posts ?? [], id: \.date) { post in
+                            
+                            // знатный костыль по отображению комментов, позже буду исправлять
+                            WebView(text: post.comment ?? "")
+                        }
+                    
+                }
+            }
+        
+            .onAppear {
+                Task {
+                    await viewModel.getData(board: board, num: num)
+                }
+            }
     }
+        
 }
 
 #Preview {
-    ThreadView()
+    ThreadView(board: "abu", num: "42375")
 }

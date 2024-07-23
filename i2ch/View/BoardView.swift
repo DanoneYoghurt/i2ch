@@ -17,22 +17,18 @@ struct BoardView: View {
         VStack {
             if let boardItem = viewModel.boardItem {
                 List {
-                    ForEach(boardItem.threads ?? [], id: \.date) { thread in
+                    ForEach(boardItem.threads ?? [], id: \.comment) { thread in
                         NavigationLink {
-                            ThreadView()
+                            
+                            // Проблемная строчка. Приходят не те данные в board возможно.
+                            // оказывается точно, краш был потому что надо было номер поста завернуть в стринг
+                            ThreadView(board: thread.board ?? "au", num: String(thread.num ?? 42375))
                         } label: {
                             HStack {
                                 ScrollView(.horizontal) {
                                     HStack {
                                         ForEach(thread.files ?? [], id: \.name) { file in
-                                            AsyncImage(url: URL(string: "https://2ch.hk\(file.thumbnail ?? "")")!) { image in
-                                                image
-                                                    .image?
-                                                    .resizable()
-                                                    .scaledToFill()
-                                                    .frame(width: 100, height: 100)
-                                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                            }
+                                            ThumbnailImageView(thumbnailPath: file.thumbnail)
                                         }
                                     }
                                 }

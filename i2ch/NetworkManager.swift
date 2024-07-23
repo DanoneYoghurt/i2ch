@@ -15,6 +15,7 @@ enum NetworkError: Error {
 @Observable
 class NetworkManager {
     
+    @MainActor
     func downloadData<T: Codable>(from urlString: String) async throws -> T {
         let url = URL(string: urlString)!
         var request = URLRequest(url: url)
