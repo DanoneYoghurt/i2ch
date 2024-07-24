@@ -14,9 +14,13 @@ struct ThumbnailImageView: View {
     var body: some View {
         AsyncImage(url: URL(string: "https://2ch.hk\(thumbnailPath ?? "")")!) { image in
             image
-                .image?
                 .resizable()
                 .scaledToFill()
+                .frame(width: 100, height: 100)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .padding(.vertical, 10)
+        } placeholder: {
+            ProgressView()
                 .frame(width: 100, height: 100)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.vertical, 10)

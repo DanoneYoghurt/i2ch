@@ -1,0 +1,15 @@
+{
+  "originHash" : "c0992d075446273adfc7b81152b3efbe7f718f3a80c753128e26f93b8f1135ef",
+  "pins" : [
+    {
+      "identity" : "richtext",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/NuPlay/RichText.git",
+      "state" : {
+        "revision" : "8abbc59142523ac18f36fcf07414c2f85a2e75ae",
+        "version" : "2.4.1"
+      }
+    }
+  ],
+  "version" : 3
+}

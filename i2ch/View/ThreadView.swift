@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RichText
 
 struct ThreadView: View {
     
@@ -16,25 +17,62 @@ struct ThreadView: View {
     
     var body: some View {
         
-             List {
-                ForEach(viewModel.threadItem?.threads ?? [], id: \.posts) { posts in
-                    
-                        ForEach(posts.posts ?? [], id: \.date) { post in
+        List {
+            ForEach(viewModel.threadItem?.threads ?? [], id: \.posts) { posts in
+                
+                ForEach(posts.posts ?? [], id: \.date) { post in
+                    Section {
+                        LazyVStack {
+                            HStack {
+                                Text(String(post.num ?? 0))
+                                    .foregroundStyle(.orange)
+                                
+                                Spacer()
+                                
+                                Text(post.date ?? "Loading")
+                                    .font(.footnote)
+                                
+                                Spacer()
+                                
+                                Text(post.name ?? "Loading")
+                            }
                             
-                            // знатный костыль по отображению комментов, позже буду исправлять
-                            WebView(text: post.comment ?? "")
+                            if let files = post.files {
+                                Divider()
+                                
+                                ScrollView(.horizontal) {
+                                    HStack {
+                                        ForEach(files, id: \.name) { file in
+                                            ThumbnailImageView(thumbnailPath: file.thumbnail)
+                                        }
+                                    }
+                                }
+                                
+                                Divider()
+                            } else {
+                                Divider()
+                            }
+                            
+                            RichText(html: post.comment ?? "Loading")
+                                .linkColor(light: Color.orange, dark: Color.orange)
+                                .placeholder {
+                                    ProgressView()
+                                        .padding(.vertical, 10)
+                                }
                         }
-                    
+                    }
                 }
             }
+        }
+        .navigationTitle(viewModel.threadItem?.title ?? "")
         
-            .onAppear {
-                Task {
-                    await viewModel.getData(board: board, num: num)
-                }
+        .onAppear {
+            Task {
+                await viewModel.getData(board: board, num: num)
             }
+        }
     }
-        
+    
 }
 
 #Preview {

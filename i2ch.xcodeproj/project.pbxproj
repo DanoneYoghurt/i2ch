@@ -11,7 +11,6 @@
 		DC54EDEA2C4BE261007861E7 /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC54EDE92C4BE261007861E7 /* ContentView-ViewModel.swift */; };
 		DC69BF932C4E5EC800BCA348 /* ThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC69BF922C4E5EC800BCA348 /* ThreadView.swift */; };
 		DC6DD97E2C4C2B630002E583 /* BoardView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6DD97D2C4C2B630002E583 /* BoardView-ViewModel.swift */; };
-		DC6F152D2C4F888500E18A77 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6F152C2C4F888500E18A77 /* WebView.swift */; };
 		DCD73C7C2C4BAF6700678CEB /* i2chApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD73C7B2C4BAF6700678CEB /* i2chApp.swift */; };
 		DCD73C7E2C4BAF6700678CEB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD73C7D2C4BAF6700678CEB /* ContentView.swift */; };
 		DCD73C802C4BAF6C00678CEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCD73C7F2C4BAF6C00678CEB /* Assets.xcassets */; };
@@ -24,6 +23,7 @@
 		DCEEEDD22C4BE715002085D8 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEEEDD12C4BE715002085D8 /* BoardView.swift */; };
 		DCEEEDD42C4BEFA6002085D8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEEEDD32C4BEFA6002085D8 /* NetworkManager.swift */; };
 		DCEEEDD62C4BF24E002085D8 /* Board-Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEEEDD52C4BF24E002085D8 /* Board-Model.swift */; };
+		DCEFDB552C50568100022141 /* RichText in Frameworks */ = {isa = PBXBuildFile; productRef = DCEFDB542C50568100022141 /* RichText */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +31,6 @@
 		DC54EDE92C4BE261007861E7 /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
 		DC69BF922C4E5EC800BCA348 /* ThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadView.swift; sourceTree = "<group>"; };
 		DC6DD97D2C4C2B630002E583 /* BoardView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoardView-ViewModel.swift"; sourceTree = "<group>"; };
-		DC6F152C2C4F888500E18A77 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		DCD73C782C4BAF6700678CEB /* i2ch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = i2ch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCD73C7B2C4BAF6700678CEB /* i2chApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = i2chApp.swift; sourceTree = "<group>"; };
 		DCD73C7D2C4BAF6700678CEB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCEFDB552C50568100022141 /* RichText in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +115,6 @@
 				DC69BF922C4E5EC800BCA348 /* ThreadView.swift */,
 				DCE7DDD02C4E8A24001C7EFD /* ThumbnailImageView.swift */,
 				DC54EDE72C4BE0AE007861E7 /* NsfwView.swift */,
-				DC6F152C2C4F888500E18A77 /* WebView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -146,6 +145,9 @@
 			dependencies = (
 			);
 			name = i2ch;
+			packageProductDependencies = (
+				DCEFDB542C50568100022141 /* RichText */,
+			);
 			productName = i2ch;
 			productReference = DCD73C782C4BAF6700678CEB /* i2ch.app */;
 			productType = "com.apple.product-type.application";
@@ -175,6 +177,9 @@
 				ru,
 			);
 			mainGroup = DCD73C6F2C4BAF6700678CEB;
+			packageReferences = (
+				DCEFDB532C50568100022141 /* XCRemoteSwiftPackageReference "RichText" */,
+			);
 			productRefGroup = DCD73C792C4BAF6700678CEB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -215,7 +220,6 @@
 				DC54EDE82C4BE0AE007861E7 /* NsfwView.swift in Sources */,
 				DCEEEDD62C4BF24E002085D8 /* Board-Model.swift in Sources */,
 				DCD73C7C2C4BAF6700678CEB /* i2chApp.swift in Sources */,
-				DC6F152D2C4F888500E18A77 /* WebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +425,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DCEFDB532C50568100022141 /* XCRemoteSwiftPackageReference "RichText" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/NuPlay/RichText.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DCEFDB542C50568100022141 /* RichText */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DCEFDB532C50568100022141 /* XCRemoteSwiftPackageReference "RichText" */;
+			productName = RichText;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DCD73C702C4BAF6700678CEB /* Project object */;
 }
