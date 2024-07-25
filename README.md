@@ -13,8 +13,8 @@
 
 Скриншоты:
 
-![IMG_1452](https://github.com/user-attachments/assets/e5a1774a-2aec-40bb-ad9f-67a07cb7c55b)
-![IMG_1454](https://github.com/user-attachments/assets/8c315e03-46ed-4b6f-92f4-b2a3ea861bdc)
-![IMG_1455](https://github.com/user-attachments/assets/4662cc2a-7001-4185-bdb2-b889bcf0a529)
+<img src="https://github.com/user-attachments/assets/e5a1774a-2aec-40bb-ad9f-67a07cb7c55b" width="295" height="699">
+<img src="https://github.com/user-attachments/assets/8c315e03-46ed-4b6f-92f4-b2a3ea861bdc" width="295" height="699">
+<img src="https://github.com/user-attachments/assets/4662cc2a-7001-4185-bdb2-b889bcf0a529" width="295" height="699">
 
 
