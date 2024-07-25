@@ -12,12 +12,13 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var viewModel = ViewModel()
+    @State private var showNsfw = false
     
     var body: some View {
         NavigationStack {
             if !viewModel.boards.isEmpty {
                 List {
-                    ForEach(viewModel.boards, id: \.id) { board in
+                    ForEach(showNsfw ? viewModel.boards : viewModel.boards.filter { $0.category != "Взрослым" && $0.category != "Разное" }, id: \.name) { board in
                         NavigationLink {
                             BoardView(id: board.id)
                         } label: {
@@ -45,13 +46,20 @@ struct ContentView: View {
                     }
                     .navigationTitle("Boards")
                 }
-                
+                .refreshable {
+                    await viewModel.getData()
+                }
+                .toolbar {
+                    Button {
+                        showNsfw.toggle()
+                    } label: {
+                        Image(systemName: showNsfw ? "eye.slash" : "eye")
+                    }
+                }
             } else {
                 ProgressView()
             }
-            
         }
-        
         .onAppear {
             Task {
                 await viewModel.getData()

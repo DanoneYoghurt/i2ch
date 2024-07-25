@@ -19,16 +19,13 @@ struct BoardView: View {
                 List {
                     ForEach(boardItem.threads ?? [], id: \.comment) { thread in
                         NavigationLink {
-                            
-                            // Проблемная строчка. Приходят не те данные в board возможно.
-                            // оказывается точно, краш был потому что надо было номер поста завернуть в стринг
                             ThreadView(board: thread.board ?? "au", num: String(thread.num ?? 42375))
                         } label: {
                             HStack {
                                 ScrollView(.horizontal) {
                                     HStack {
                                         ForEach(thread.files ?? [], id: \.name) { file in
-                                            ThumbnailImageView(thumbnailPath: file.thumbnail)
+                                            ThumbnailImageView(thumbnailPath: file.thumbnail, fullsizePath: file.path)
                                         }
                                     }
                                 }
@@ -49,6 +46,9 @@ struct BoardView: View {
                             }
                         }
                     }
+                }
+                .refreshable {
+                    await viewModel.getData(board: id)
                 }
             } else {
                 ProgressView()

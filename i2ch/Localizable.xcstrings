@@ -35,6 +35,16 @@
           }
         }
       }
+    },
+    "This media format is not supported yet" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этот медиа формат пока не поддерживается"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

@@ -22,7 +22,7 @@ struct ThreadView: View {
                 
                 ForEach(posts.posts ?? [], id: \.date) { post in
                     Section {
-                        LazyVStack {
+                        VStack {
                             HStack {
                                 Text(String(post.num ?? 0))
                                     .foregroundStyle(.orange)
@@ -43,7 +43,7 @@ struct ThreadView: View {
                                 ScrollView(.horizontal) {
                                     HStack {
                                         ForEach(files, id: \.name) { file in
-                                            ThumbnailImageView(thumbnailPath: file.thumbnail)
+                                            ThumbnailImageView(thumbnailPath: file.thumbnail, fullsizePath: file.path)
                                         }
                                     }
                                 }
@@ -52,17 +52,21 @@ struct ThreadView: View {
                             } else {
                                 Divider()
                             }
-                            
-                            RichText(html: post.comment ?? "Loading")
-                                .linkColor(light: Color.orange, dark: Color.orange)
-                                .placeholder {
-                                    ProgressView()
-                                        .padding(.vertical, 10)
-                                }
+                            if let comment = post.comment {
+                                RichText(html: comment)
+                                    .linkColor(light: Color.orange, dark: Color.orange)
+                                    .placeholder {
+                                        ProgressView()
+                                            .padding(.vertical, 10)
+                                    }
+                            }
                         }
                     }
                 }
             }
+        }
+        .refreshable {
+            await viewModel.getData(board: board, num: num)
         }
         .navigationTitle(viewModel.threadItem?.title ?? "")
         

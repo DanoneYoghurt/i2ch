@@ -24,6 +24,7 @@
 		DCEEEDD42C4BEFA6002085D8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEEEDD32C4BEFA6002085D8 /* NetworkManager.swift */; };
 		DCEEEDD62C4BF24E002085D8 /* Board-Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEEEDD52C4BF24E002085D8 /* Board-Model.swift */; };
 		DCEFDB552C50568100022141 /* RichText in Frameworks */ = {isa = PBXBuildFile; productRef = DCEFDB542C50568100022141 /* RichText */; };
+		DCF48FED2C52AEF7007530CC /* FullscreenMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF48FEC2C52AEF7007530CC /* FullscreenMediaView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		DCEEEDD12C4BE715002085D8 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		DCEEEDD32C4BEFA6002085D8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		DCEEEDD52C4BF24E002085D8 /* Board-Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Board-Model.swift"; sourceTree = "<group>"; };
+		DCF48FEC2C52AEF7007530CC /* FullscreenMediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenMediaView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				DCEEEDD12C4BE715002085D8 /* BoardView.swift */,
 				DC69BF922C4E5EC800BCA348 /* ThreadView.swift */,
 				DCE7DDD02C4E8A24001C7EFD /* ThumbnailImageView.swift */,
+				DCF48FEC2C52AEF7007530CC /* FullscreenMediaView.swift */,
 				DC54EDE72C4BE0AE007861E7 /* NsfwView.swift */,
 			);
 			path = View;
@@ -207,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCF48FED2C52AEF7007530CC /* FullscreenMediaView.swift in Sources */,
 				DCD73C8A2C4BB04B00678CEB /* BoardList-Model.swift in Sources */,
 				DCD73C7E2C4BAF6700678CEB /* ContentView.swift in Sources */,
 				DC6DD97E2C4C2B630002E583 /* BoardView-ViewModel.swift in Sources */,
