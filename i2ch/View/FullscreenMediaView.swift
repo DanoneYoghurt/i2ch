@@ -22,14 +22,18 @@ struct FullscreenMediaView: View {
             Color.black
                 .ignoresSafeArea()
             
-            if mediaUrl.hasSuffix(".mp4") {
+            if mediaUrl.hasSuffix(".mp4") || mediaUrl.hasSuffix(".gif") {
                 VideoPlayer(player: AVPlayer(url: URL(string: "https://2ch.hk\(mediaUrl)")!))
-            } else if mediaUrl.hasSuffix(".jpg") || mediaUrl.hasSuffix(".jpeg") || mediaUrl.hasSuffix(".png") || mediaUrl.hasSuffix(".webp") || mediaUrl.hasSuffix(".gif") {
+            } else if mediaUrl.hasSuffix(".jpg") || mediaUrl.hasSuffix(".jpeg") || mediaUrl.hasSuffix(".png") || mediaUrl.hasSuffix(".webp") {
                 AsyncImage(url: URL(string: "https://2ch.hk\(mediaUrl)")) { image in
                     image
-                        .image?
                         .resizable()
                         .scaledToFit()
+                }  placeholder: {
+                    ProgressView()
+                        .frame(width: 100, height: 100)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .padding(.vertical, 10)
                 }
                 .scaleEffect(currentZoom + totalZoom)
                 .gesture(
