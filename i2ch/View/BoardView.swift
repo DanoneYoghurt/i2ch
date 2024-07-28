@@ -28,7 +28,9 @@ struct BoardView: View {
                                             ThumbnailImageView(thumbnailPath: file.thumbnail, fullsizePath: file.path)
                                         }
                                     }
+                                    .scrollTargetLayout()
                                 }
+                                .scrollTargetBehavior(.viewAligned)
                                 .frame(width: 105, height: 105)
                                 VStack(alignment: .leading) {
                                     HStack {
