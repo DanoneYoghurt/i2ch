@@ -17,14 +17,14 @@ struct BoardView: View {
         VStack {
             if let boardItem = viewModel.boardItem {
                 List {
-                    ForEach(boardItem.threads ?? [], id: \.comment) { thread in
+                    ForEach(boardItem.threads, id: \.comment) { thread in
                         NavigationLink {
-                            ThreadView(board: thread.board ?? "au", num: String(thread.num ?? 42375))
+                            ThreadView(board: thread.board, num: String(thread.num))
                         } label: {
                             HStack {
                                 ScrollView(.horizontal) {
                                     HStack {
-                                        ForEach(thread.files ?? [], id: \.name) { file in
+                                        ForEach(thread.files, id: \.name) { file in
                                             ThumbnailImageView(thumbnailPath: file.thumbnail, fullsizePath: file.path)
                                         }
                                     }
@@ -34,14 +34,14 @@ struct BoardView: View {
                                 .frame(width: 105, height: 105)
                                 VStack(alignment: .leading) {
                                     HStack {
-                                        Text(String(thread.num ?? 0))
+                                        Text(String(thread.num))
                                             .foregroundStyle(.orange)
-                                        Text(thread.name ?? "Loading")
-                                        Text(thread.email ?? "Loading")
+                                        Text(thread.name)
+                                        Text(thread.email)
                                     }
                                     .font(.system(size: 15))
                                     Spacer()
-                                    Text(thread.subject ?? "Loading")
+                                    Text(thread.subject)
                                     Spacer()
                                 }
                                 .padding(.vertical, 10)
@@ -61,7 +61,7 @@ struct BoardView: View {
                 await viewModel.getData(board: id)
             }
         }
-        .navigationTitle(viewModel.boardItem?.board?.name ?? "Loading")
+        .navigationTitle(viewModel.boardItem?.board.name ?? "Loading")
         .navigationBarTitleDisplayMode(.inline)
         
         
