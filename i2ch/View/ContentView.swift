@@ -13,21 +13,34 @@ struct ContentView: View {
     
     @State private var viewModel = ViewModel()
     @State private var showNsfw = false
+    @State private var searchText = ""
+    
+    var filteredBoards: [BoardListItem] {
+        if showNsfw {
+            return viewModel.boards
+        } else {
+            return viewModel.boards.filter { $0.category != "Взрослым" && $0.category != "Разное" }
+        }
+    }
+    
+    var searchResults: [BoardListItem] {
+        if searchText.isEmpty {
+            return filteredBoards
+        } else {
+            return filteredBoards.filter { $0.name.localizedStandardContains(searchText) }
+        }
+    }
     
     var body: some View {
         NavigationStack {
             if !viewModel.boards.isEmpty {
                 List {
-                    ForEach(showNsfw ? viewModel.boards : viewModel.boards.filter { $0.category != "Взрослым" && $0.category != "Разное" }, id: \.name) { board in
+                    ForEach(searchResults, id: \.name) { board in
                         NavigationLink {
                             BoardView(id: board.id)
                         } label: {
                             HStack {
-                                Text("/\(board.id)/")
-                                    .font(.system(size: 15))
-                                    .frame(width: 80)
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(.orange)
+                                BoardIcon(boardId: board.id)
                                 VStack(alignment: .leading) {
                                     Text(board.name)
                                         
@@ -46,6 +59,7 @@ struct ContentView: View {
                     }
                     .navigationTitle("Boards")
                 }
+                .searchable(text: $searchText)
                 .refreshable {
                     await viewModel.getData()
                 }
@@ -65,6 +79,19 @@ struct ContentView: View {
                 await viewModel.getData()
             }
         }
+    }
+}
+
+struct BoardIcon: View {
+    
+    var boardId: String
+    
+    var body: some View {
+        Text("/\(boardId)/")
+            .font(.system(size: 15))
+            .frame(width: 80)
+            .fontWeight(.semibold)
+            .foregroundStyle(.orange)
     }
 }
 
